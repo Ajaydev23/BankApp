@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html,body{
+    background-image:url(assets/businessman-touching-interface-online-banking-e-commerge-concept-online-banking-concept_263915-50.jpg) ;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
