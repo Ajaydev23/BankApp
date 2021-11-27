@@ -11,38 +11,91 @@ export class DataService {
   }
 
   constructor() { }
-  register(acno:any,uname:any,password:any){
-    let database=this.data
-    if(acno in database){
+  register(acno: any, uname: any, password: any) {
+    let database = this.data
+    if (acno in database) {
       return false
     }
-    else{
-      database[acno]={
+    else {
+      database[acno] = {
         acno,
         uname,
         password,
-        balance:0
+        balance: 0
       }
       return true
     }
 
   }
-  login(acno:any,pswd:any){
+  login(acno: any, pswd: any) {
     let database = this.data
     if (acno in database) {
       if (pswd == database[acno]["password"]) {
         return true;
-        
+
       }
       else {
         alert("invalid password")
         return false;
       }
     }
-    else{
+    else {
       alert("invalid account number")
       return false;
     }
+  }
+  deposit(acno: any, pswd: any, amt: any) {
+    var amount = parseInt(amt)
+    let database = this.data
+    if (acno in database) {
+      if (pswd == database[acno]["password"]) {
+        database[acno]["balance"] += amount
+        return database[acno]["balance"];
+
+      }
+      else {
+        alert("invalid password")
+        return false;
+      }
+      return true;
+
+    }
+    else {
+      alert("invalid account number")
+      return false
+
+    }
+
+  }
+  withdraw(acno: any, pswd: any, amt: any) {
+    var amount = parseInt(amt)
+    let database = this.data
+    if (acno in database) {
+      if (pswd == database[acno]["password"]) {
+        if (database[acno]["balance"] > amount) {
+          database[acno]["balance"] = database[acno]["balance"] - amount
+          return database[acno]["balance"];
+        }
+        else {
+          
+          return false;
+          alert("Insufficient balance")
+        }
+
+      }
+      else {
+        alert("invalid password")
+        return false;
+      }
+      return true;
+
+    }
+    else {
+      alert("invalid account number")
+      return false
+
+    }
+
   }
 
 }
